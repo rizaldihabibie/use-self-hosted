@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   compile:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     name: Running maven compile
     steps:
       - uses: actions/checkout@v2
