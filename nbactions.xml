@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>run</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>spring-boot:run</goal>
+        </goals>
+        <properties>
+            <spring-boot.run.jvmArguments>-noverify -XX:TieredStopAtLevel=1</spring-boot.run.jvmArguments>
+            <spring-boot.run.mainClass>com.habibie.general.Sample-restApplication</spring-boot.run.mainClass>
+            <Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
+        </properties>
+    </action>
+    <action>
+        <actionName>debug</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>spring-boot:run</goal>
+        </goals>
+        <properties>
+            <spring-boot.run.jvmArguments>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -noverify -XX:TieredStopAtLevel=1</spring-boot.run.jvmArguments>
+            <spring-boot.run.mainClass>com.habibie.general.Sample-restApplication</spring-boot.run.mainClass>
+            <Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
+            <jpda.listen>true</jpda.listen>
+        </properties>
+    </action>
+    <action>
+        <actionName>profile</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+        </goals>
+        <properties>
+            <exec.args>-classpath %classpath com.habibie.general.Sample-restApplication</exec.args>
+            <exec.executable>java</exec.executable>
+        </properties>
+    </action>
+    <action>
+            <actionName>CUSTOM-build fat jar</actionName>
+            <displayName>build fat jar</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>compile</goal>
+                <goal>assembly:single</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-test</actionName>
+            <displayName>test</displayName>
+            <goals>
+                <goal>test</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-it test</actionName>
+            <displayName>it test</displayName>
+            <goals>
+                <goal>verify</goal>
+                
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>surefire-it</activatedProfile>
+            </activatedProfiles>
+        </action>
+    <action>
+            <actionName>CUSTOM-clean package</actionName>
+            <displayName>clean package</displayName>
+            <goals>
+                <goal>-B</goal>
+                <goal>clean</goal>
+                <goal>package</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-artifact</actionName>
+            <displayName>artifact</displayName>
+            <goals>
+                <goal>-B</goal>
+                <goal>clean</goal>
+                <goal>deploy</goal>
+                <goal>-DskipTests</goal>
+            </goals>
+        </action>
+</actions>
